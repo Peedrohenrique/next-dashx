@@ -56,7 +56,7 @@ export function Sidebar() {
 
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <Link href="#" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground">
+                                <Link href="client" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground">
                                     <Users className="w-4 h-4" />
                                     <span className="sr-only">Clientes</span>
                                 </Link>
