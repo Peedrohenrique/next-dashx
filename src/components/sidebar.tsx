@@ -20,7 +20,7 @@ export function Sidebar() {
 
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <Link href="#" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground">
+                                <Link href="/" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground">
                                     <Home className="w-4 h-4" />
                                     <span className="sr-only">Início</span>
                                 </Link>
@@ -123,7 +123,7 @@ export function Sidebar() {
                                     <span className="sr-only">Logo</span>
                                 </Link>
                                 <Link
-                                    href="#"
+                                    href="/"
                                     className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                     prefetch={false}
                                 >
@@ -150,7 +150,7 @@ export function Sidebar() {
                                 </Link>
 
                                 <Link
-                                    href="#"
+                                    href="client"
                                     className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                     prefetch={false}
                                 >
