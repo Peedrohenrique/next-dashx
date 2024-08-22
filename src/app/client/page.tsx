@@ -66,6 +66,36 @@ const data: Payment[] = [
         status: "failed",
         email: "carmella@hotmail.com",
     },
+    {
+        id: "5kma53agf",
+        amount: 874,
+        status: "success",
+        email: "Silas22@gmail.com",
+    },
+    {
+        id: "5kma53hy",
+        amount: 874,
+        status: "success",
+        email: "Silas22@gmail.com",
+    },
+    {
+        id: "5kma53ki",
+        amount: 874,
+        status: "success",
+        email: "Silas22@gmail.com",
+    },
+    {
+        id: "5kma53aw",
+        amount: 874,
+        status: "success",
+        email: "Silas22@gmail.com",
+    },
+    {
+        id: "5kma53hq",
+        amount: 874,
+        status: "success",
+        email: "Silas22@gmail.com",
+    },
 ]
 
 export type Payment = {
@@ -172,13 +202,16 @@ export default function Client() {
     return (
         <div className="sm:ml-14 p-10">
             <div className="flex items-center justify-between lg:justify-between">
-                <h1 className="text-3xl">Clientes</h1>
-                <Button className="">Novo</Button>
+                <div className="flex flex-col gap-3">
+                    <h1 className="text-5xl ">Clientes</h1>
+                    <p className="text-sm text-gray-500 ">Todas as informações sobre os clientes</p>
+                </div>
+                <Button className="px-10">Novo</Button>
             </div>
 
 
 
-            <div className="w-full">
+            <div className="w-full mt-10">
                 <div className="flex items-center py-4">
                     <Input
                         placeholder="Filter emails..."
