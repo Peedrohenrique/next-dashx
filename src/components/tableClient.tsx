@@ -35,82 +35,110 @@ import {
     TableRow,
 } from "@/components/ui/table"
 
-const data: Payment[] = [
-    {
-        id: "m5gr84i9",
-        amount: 316,
-        status: "success",
-        email: "ken99@yahoo.com",
-    },
-    {
-        id: "3u1reuv4",
-        amount: 242,
-        status: "success",
-        email: "Abe45@gmail.com",
-    },
-    {
-        id: "derv1ws0",
-        amount: 837,
-        status: "processing",
-        email: "Monserrat44@gmail.com",
-    },
-    {
-        id: "5kma53ae",
-        amount: 874,
-        status: "success",
-        email: "Silas22@gmail.com",
-    },
-    {
-        id: "bhqecj4p",
-        amount: 721,
-        status: "failed",
-        email: "carmella@hotmail.com",
-    },
-    {
-        id: "5kma53agf",
-        amount: 874,
-        status: "success",
-        email: "Silas22@gmail.com",
-    },
-    {
-        id: "5kma53hy",
-        amount: 874,
-        status: "success",
-        email: "Silas22@gmail.com",
-    },
-    {
-        id: "5kma53ki",
-        amount: 874,
-        status: "success",
-        email: "Silas22@gmail.com",
-    },
-    {
-        id: "5kma53aw",
-        amount: 874,
-        status: "success",
-        email: "Silas22@gmail.com",
-    },
-    {
-        id: "5kma53hq",
-        amount: 874,
-        status: "success",
-        email: "Silas22@gmail.com",
-    },
-]
+export type Client = {
+    id: string;
+    nome: string;
+    email: string;
+    status: string;
+    cidade: string;
+};
 
-export type Payment = {
-    id: string
-    amount: number
-    status: "pending" | "processing" | "success" | "failed"
-    email: string
-}
 
-export const columns: ColumnDef<Payment>[] = [
+const data: Client[] = [
+    {
+        id: "1",
+        nome: "João Silva",
+        email: "joao.silva@gmail.com",
+        status: "Ativo",
+        cidade: "São Paulo",
+    },
+    {
+        id: "2",
+        nome: "Maria Oliveira",
+        email: "maria.oliveira@gmail.com",
+        status: "Inativo",
+        cidade: "Rio de Janeiro",
+    },
+    {
+        id: "3",
+        nome: "Carlos Santos",
+        email: "carlos.santos@gmail.com",
+        status: "Ativo",
+        cidade: "Belo Horizonte",
+    },
+    {
+        id: "4",
+        nome: "Ana Pereira",
+        email: "ana.pereira@gmail.com",
+        status: "Ativo",
+        cidade: "Porto Alegre",
+    },
+    {
+        id: "5",
+        nome: "Luís Costa",
+        email: "luis.costa@gmail.com",
+        status: "Inativo",
+        cidade: "Curitiba",
+    },
+    {
+        id: "6",
+        nome: "Fernanda Almeida",
+        email: "fernanda.almeida@gmail.com",
+        status: "Ativo",
+        cidade: "Fortaleza",
+    },
+    {
+        id: "7",
+        nome: "Paulo Mendes",
+        email: "paulo.mendes@gmail.com",
+        status: "Ativo",
+        cidade: "Brasília",
+    },
+    {
+        id: "8",
+        nome: "Beatriz Lima",
+        email: "beatriz.lima@gmail.com",
+        status: "Inativo",
+        cidade: "Salvador",
+    },
+    {
+        id: "9",
+        nome: "Ricardo Sousa",
+        email: "ricardo.sousa@gmail.com",
+        status: "Ativo",
+        cidade: "Recife",
+    },
+    {
+        id: "10",
+        nome: "Juliana Rocha",
+        email: "juliana.rocha@gmail.com",
+        status: "Ativo",
+        cidade: "Florianópolis",
+    },
+    {
+        id: "11",
+        nome: "Mariana Farias",
+        email: "mariana.farias@gmail.com",
+        status: "Inativo",
+        cidade: "Manaus",
+    },
+];
+
+
+export const columns: ColumnDef<Client>[] = [
+
     {
         accessorKey: "status",
         header: "Status",
         cell: ({ row }) => (
             <div className="capitalize">{row.getValue("status")}</div>
+        ),
+    },
+    {
+        accessorKey: "nome",
+        header: "Nome",
+        cell: ({ row }) => (
+            <div className="capitalize">{row.getValue("nome")}</div>
         ),
     },
     {
@@ -121,7 +149,7 @@ export const columns: ColumnDef<Payment>[] = [
                     variant="ghost"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
-                    Email
+                    E-mail
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
             )
@@ -129,46 +157,39 @@ export const columns: ColumnDef<Payment>[] = [
         cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
     },
     {
-        accessorKey: "amount",
-        header: () => <div className="text-right">Amount</div>,
-        cell: ({ row }) => {
-            const amount = parseFloat(row.getValue("amount"))
-
-            // Format the amount as a dollar amount
-            const formatted = new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD",
-            }).format(amount)
-
-            return <div className="text-right font-medium">{formatted}</div>
-        },
+        accessorKey: "cidade",
+        header: () => <div className="">Cidade</div>,
+        cell: ({ row }) => (
+            <div className=" font-medium">{row.getValue("cidade")}</div>
+        )
     },
     {
         id: "actions",
         enableHiding: false,
         cell: ({ row }) => {
-            const payment = row.original
 
             return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(payment.id)}
-                        >
-                            Copy payment ID
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
-                        <DropdownMenuItem>View payment details</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                <div className="text-right">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" className="h-8 w-8 p-0">
+                                <span className="sr-only">Open menu</span>
+                                <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                            <DropdownMenuItem
+                                onClick={() => navigator.clipboard.writeText(row.original.id)}
+                            >
+                                Copiar ID Cliente
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem>Ver Cliente</DropdownMenuItem>
+                            <DropdownMenuItem>Deletar Cliente</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
             )
         },
     },
@@ -178,7 +199,6 @@ export function TableClient() {
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
-    const [rowSelection, setRowSelection] = React.useState({})
 
     const table = useReactTable({
         data,
@@ -190,12 +210,10 @@ export function TableClient() {
         getSortedRowModel: getSortedRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         onColumnVisibilityChange: setColumnVisibility,
-        onRowSelectionChange: setRowSelection,
         state: {
             sorting,
             columnFilters,
             columnVisibility,
-            rowSelection,
         },
     })
 
@@ -204,7 +222,7 @@ export function TableClient() {
         <div className="w-full mt-10">
             <div className="flex items-center py-4">
                 <Input
-                    placeholder="Filter emails..."
+                    placeholder="Filtrar e-mails..."
                     value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
                     onChange={(event) => table.getColumn("email")?.setFilterValue(event.target.value)}
                     className="max-w-sm"
@@ -279,7 +297,7 @@ export function TableClient() {
                                     colSpan={columns.length}
                                     className="h-24 text-center"
                                 >
-                                    No results.
+                                    Sem resultados.
                                 </TableCell>
                             </TableRow>
                         )}
@@ -288,8 +306,9 @@ export function TableClient() {
             </div>
             <div className="flex items-center justify-end space-x-2 py-4">
                 <div className="flex-1 text-sm text-muted-foreground">
-                    {table.getFilteredSelectedRowModel().rows.length} de{" "}
-                    {table.getFilteredRowModel().rows.length} row(s) selected.
+                    Página {table.getState().pagination.pageIndex + 1} de{" "}
+                    {table.getPageCount()} {" - "}
+                    {table.getFilteredRowModel().rows.length} registros
                 </div>
                 <div className="space-x-2">
                     <Button
@@ -310,8 +329,6 @@ export function TableClient() {
                     </Button>
                 </div>
             </div>
-            
-
         </div>
 
 
